@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const BASE_URL = 'https://expense-tracker-e0552-default-rtdb.europe-west1.firebasedatabase.app/';
 
-export async function storeRemoteExpense(expense) {
-	const response = await axios.post(`${BASE_URL}/expenses.json`, expense);
+export async function storeRemoteExpense(expense, token) {
+	const response = await axios.post(`${BASE_URL}/expenses.json?auth=${token}`, expense);
 	return response.data.name; // id
 }
 
@@ -23,10 +23,10 @@ export async function fetchRemoteExpenses(token) {
 	return expenses;
 }
 
-export function updateRemoteExpense(id, expense) {
-	return axios.put(`${BASE_URL}/expenses/${id}.json`, expense);
+export function updateRemoteExpense(id, expense, token) {
+	return axios.put(`${BASE_URL}/expenses/${id}.json?auth=${token}`, expense);
 }
 
-export function deleteRemoteExpense(id) {
-	return axios.delete(`${BASE_URL}/expenses/${id}.json`);
+export function deleteRemoteExpense(id, token) {
+	return axios.delete(`${BASE_URL}/expenses/${id}.json?auth=${token}`);
 }
