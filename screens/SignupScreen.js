@@ -17,7 +17,6 @@ function SignupScreen() {
       const token = await createUser(email, password);
       dispatch(authenticate(token));
     } catch (e) {
-      console.log(e);
       Alert.alert('Authentication failed!', 'Could not create an account. Please try again later.');
       setIsAuthenticating(false);
     }

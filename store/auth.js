@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const authSlice = createSlice({
 	name: 'auth',
 	initialState: {
 		token: null,
-		uid: null, // Add UID to state
+		uid: null,
 		isAuthenticated: false,
 	},
 	reducers: {
