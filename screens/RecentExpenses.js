@@ -10,6 +10,7 @@ import ErrorOverlay from '../components/UI/ErrorOverlay';
 export default function RecentExpenses() {
 	const expenses = useSelector(state => state.expenses.expenses);
 	const token = useSelector(state => state.auth.token);
+	const uid = useSelector((state) => state.auth.uid);
 	const dispatch = useDispatch();
 
 	const [isFetching, setIsFetching] = useState(true);
@@ -19,7 +20,7 @@ export default function RecentExpenses() {
 		async function getExpenses() {
 			setIsFetching(true);
 			try {
-				const expenses = await fetchRemoteExpenses(token);
+				const expenses = await fetchRemoteExpenses(token, uid);
 				dispatch(setExpenses(expenses));
 			} catch (err) {
 				setError('Could not fetch expenses!');
