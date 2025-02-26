@@ -7,8 +7,9 @@ import { setExpenses } from '../store/expenses';
 import LoadingOverlay from '../components/UI/LoadingOverlay';
 import ErrorOverlay from '../components/UI/ErrorOverlay';
 
-export default function RecentExpenses({ navigation }) {
+export default function RecentExpenses() {
 	const expenses = useSelector(state => state.expenses.expenses);
+	const token = useSelector(state => state.auth.token);
 	const dispatch = useDispatch();
 
 	const [isFetching, setIsFetching] = useState(true);
@@ -18,7 +19,7 @@ export default function RecentExpenses({ navigation }) {
 		async function getExpenses() {
 			setIsFetching(true);
 			try {
-				const expenses = await fetchRemoteExpenses();
+				const expenses = await fetchRemoteExpenses(token);
 				dispatch(setExpenses(expenses));
 			} catch (err) {
 				setError('Could not fetch expenses!');
@@ -26,7 +27,7 @@ export default function RecentExpenses({ navigation }) {
 			setIsFetching(false);
 		}
 		getExpenses();
-	}, []);
+	}, [token]);
 
 	if (!!error && !isFetching) {
 		return <ErrorOverlay message={error} onConfirm={() => setError(null)} />;

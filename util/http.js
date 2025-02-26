@@ -7,8 +7,9 @@ export async function storeRemoteExpense(expense) {
 	return response.data.name; // id
 }
 
-export async function fetchRemoteExpenses() {
-	const response = await axios.get(`${BASE_URL}/expenses.json`);
+export async function fetchRemoteExpenses(token) {
+	console.log('TOKEN:', token);
+	const response = await axios.get(`${BASE_URL}/expenses.json?auth=${token}`);
 	const expenses = [];
 	for (const key in response.data) {
 		const expense = {
