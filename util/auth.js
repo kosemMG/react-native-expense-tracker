@@ -1,7 +1,8 @@
 import axios from 'axios';
+import Constants from 'expo-constants';
 
+const API_KEY = Constants.expoConfig.extra.API_KEY || Constants.manifest.extra.API_KEY;
 const BASE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:';
-const API_KEY = 'AIzaSyDzaTa2bRXnupxmQBtiNp3f842D6ufLNYE';
 
 async function authenticate(email, password, mode) {
 	const url = `${BASE_URL}${mode}?key=${API_KEY}`;
