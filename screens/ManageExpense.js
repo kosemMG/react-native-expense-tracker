@@ -21,6 +21,7 @@ export default function ManageExpense({ route: { params: { id } = {} }, navigati
 
 	const expenses = useSelector(state => state.expenses.expenses);
 	const token = useSelector(state => state.auth.token);
+	const uid = useSelector((state) => state.auth.uid);
 	const dispatch = useDispatch();
 
 	const selectedExpense = expenses.find(expense => expense.id === id);
@@ -28,7 +29,7 @@ export default function ManageExpense({ route: { params: { id } = {} }, navigati
 	async function deleteExpenseHandler() {
 		setIsSubmitting(true);
 		try {
-			await deleteRemoteExpense(id, token);
+			await deleteRemoteExpense(id, token, uid);
 			dispatch(removeExpense(id));
 			navigation.goBack();
 		} catch (e) {
@@ -42,9 +43,9 @@ export default function ManageExpense({ route: { params: { id } = {} }, navigati
 		try {
 			if (id) {
 				dispatch(updateExpense({ ...expense, id }));
-				await updateRemoteExpense(id, expense, token);
+				await updateRemoteExpense(id, expense, token, uid);
 			} else {
-				const expenseId = await storeRemoteExpense(expense, token);
+				const expenseId = await storeRemoteExpense(expense, token, uid);
 				dispatch(addExpense({ ...expense, id: expenseId }));
 			}
 			navigation.goBack();

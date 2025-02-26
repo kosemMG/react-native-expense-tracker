@@ -35,9 +35,9 @@ function AuthStack() {
 		fetchToken();
 	}, []);
 
-	if (isTryingLogin) {
-		return <AppLoading />;
-	}
+	// if (isTryingLogin) {
+	// 	return <AppLoading />;
+	// }
 
 	return (
 		<Stack.Navigator
