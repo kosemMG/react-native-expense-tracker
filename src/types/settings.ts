@@ -1,7 +1,7 @@
 export const LANGUAGES = ['en', 'he'];
 export type Language = typeof LANGUAGES[number];
 
-export const CURRENCIES = ['en', 'he'];
+export const CURRENCIES = ['usd', 'ils'];
 export type Currency = typeof CURRENCIES[number];
 
 export const LANGUAGE_MAP: Map<Language, string> = new Map([
@@ -10,6 +10,6 @@ export const LANGUAGE_MAP: Map<Language, string> = new Map([
 ]);
 
 export const CURRENCY_MAP: Map<Currency, string> = new Map([
-	['usd', '$ - United States Dollar'],
+	['usd', '$ - US Dollar'],
 	['ils', '₪ - Israeli Shekel']
 ]);
