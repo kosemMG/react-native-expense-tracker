@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import expensesReducer from './expenses.slice';
 import authReducer from './auth.slice';
+import settingsReducer from './settings.slice';
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
@@ -9,6 +10,7 @@ export const store = configureStore({
 	reducer: {
 		expenses: expensesReducer,
 		auth: authReducer,
+		settings: settingsReducer
 	},
 	// Optional: Add middleware or devTools
 	middleware: (getDefaultMiddleware) =>

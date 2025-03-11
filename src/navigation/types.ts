@@ -15,6 +15,7 @@ export type MainStackParamList = {
 export type ExpensesOverviewParamList = {
 	RecentExpenses: undefined;
 	AllExpenses: undefined;
+	Settings: undefined;
 };
 
 export type RootStackParamList = AuthStackParamList & MainStackParamList & ExpensesOverviewParamList & ExpenseStackParamList;

@@ -2,8 +2,6 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { GlobalStyles } from '../constants/styles';
 import RecentExpenses from '../screens/RecentExpenses';
@@ -12,6 +10,7 @@ import IconButton from '../components/UI/IconButton';
 import { logout } from '../store/auth.slice';
 import { AppDispatch } from '../store/store';
 import { ExpensesOverviewParamList, MainStackParamList } from './types';
+import SettingsScreen from '../screens/SettingsScreen';
 
 type ExpensesOverviewProps = NativeStackScreenProps<MainStackParamList, 'ExpensesOverview'>;
 
@@ -64,6 +63,17 @@ const ExpensesOverview: React.FC<ExpensesOverviewProps> = ({ navigation }) => {
 					tabBarLabel: 'All Expenses',
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="calendar" size={size} color={color} />
+					),
+				}}
+			/>
+			<BottomTab.Screen
+				name="Settings"
+				component={SettingsScreen}
+				options={{
+					title: 'App Settings',
+					tabBarLabel: 'Settings',
+					tabBarIcon: ({ color, size }) => (
+						<Ionicons name="settings-outline" size={size} color={color} />
 					),
 				}}
 			/>

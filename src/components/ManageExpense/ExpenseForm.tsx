@@ -167,10 +167,10 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onCancel, onSubmit, submitBut
 						/>
 						<View style={styles.buttonRow}>
 							<Button mode="flat" onPress={() => setShowDatePicker(false)} style={styles.modalButton}>
-								Cancel
+								<Text style={{ fontSize: 18 }}>Cancel</Text>
 							</Button>
 							<Button mode="flat" onPress={confirmDate} style={styles.modalButton}>
-								Done
+								<Text style={{ fontSize: 18 }}>Done</Text>
 							</Button>
 						</View>
 					</View>
