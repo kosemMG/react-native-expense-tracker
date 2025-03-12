@@ -1,3 +1,16 @@
+export const THEMES = ['light', 'dark', 'auto'];
+export type AppTheme = typeof THEMES[number];
+
+type ThemeColors = {
+	background: string;
+	text: string;
+};
+
+export type Theme = {
+	mode: 'light' | 'dark';
+	colors: ThemeColors;
+};
+
 export const LANGUAGES = ['en', 'he'];
 export type Language = typeof LANGUAGES[number];
 

@@ -3,20 +3,20 @@ import { StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { CURRENCIES, Currency, CURRENCY_MAP, Language, LANGUAGE_MAP, LANGUAGES } from '../types/settings';
-import { setCurrency, setLanguage, setMode, Settings } from '../store/settings.slice';
+import { setCurrency, setLanguage, setTheme, Settings } from '../store/settings.slice';
 import { GlobalStyles } from '../constants/styles';
 import BottomSheet from '../components/UI/BottomSheet';
 
 const SettingsScreen: React.FC = () => {
 	const { version, darkMode, language, currency } = useSelector((state: RootState) => state.settings);
 
-	const [settings, setSettings] = useState<Settings>({ darkMode, language, currency });
+	const [settings, setSettings] = useState<Settings>({ theme: darkMode, language, currency });
 	const [showLangModal, setShowLangModal] = useState(false);
 	const [showCurrModal, setShowCurrModal] = useState(false);
 
 	const toggleMode = (darkMode: boolean) => {
-		setSettings((prevState: Settings) => ({ ...prevState, darkMode }));
-		setMode(darkMode);
+		setSettings((prevState: Settings) => ({ ...prevState, theme: darkMode }));
+		setTheme(darkMode);
 	};
 
 	const setLang = (language: Language) => {
@@ -38,7 +38,7 @@ const SettingsScreen: React.FC = () => {
 				<Text style={[styles.textBase, styles.textWhite]}>Dark Mode:</Text>
 				<Switch
 					style={styles.marginHorizontal}
-					value={settings.darkMode}
+					value={settings.theme}
 					trackColor={{ false: GlobalStyles.colors.primary50, true: GlobalStyles.colors.primary400 }}
 					ios_backgroundColor={GlobalStyles.colors.primary50}
 					onValueChange={toggleMode}
